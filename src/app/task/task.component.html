@@ -15,10 +15,10 @@
   <input type="text" [(ngModel)]="insert">
 </div>
 <div class="slider">
-  <img [src]="img[0]" #next><br>
-  <input type="button" style="background-color:rgb(255,44,44);" value="<" (click)="prev(next)">
-  <input type="button" style="background-color:rgb(0,175,80);" value="play" (click)="startShow(next)">
-  <input type="button" style="background-color:rgb(255,44,44);" value="stop" (click)="stopShow()">
-  <input type="button" style="background-color:rgb(255,44,44);" value=">" (click)="goNext(next)">
+  <img [src]="img[0]" #image><br>
+  <input type="button" #prv value="<" (click)="prev(image)">
+  <input type="button" #play value="play" (click)="startShow(image,prv,play,stop,next)">
+  <input type="button" #stop value="stop" (click)="stopShow(prv,play,stop,next)">
+  <input type="button" #next value=">" (click)="goNext(image)">
 </div>
 

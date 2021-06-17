@@ -20,29 +20,34 @@ export class TaskComponent {
   // im:any[]=["assets/up/"+this.i+".jpg"]
   i:number = 0
   t:any =null
-  goNext(next:HTMLImageElement){
-    this.i++
-    if(this.i >= this.img.length){this.i = 0 }
-    next.src = this.img[this.i]
-  }
-  prev(back:HTMLImageElement){
-    this.i--
-    if(this.i < 0){this.i = this.img.length-1}
-    back.src = this.img[this.i]
-  }
-  //conflict between start and (next,prev) must stop first then next or prev
-  startShow(next:HTMLImageElement){
+  startShow(image:HTMLImageElement,prv:HTMLInputElement,play:HTMLInputElement,stop:HTMLInputElement,next:HTMLInputElement){
     if (this.t === null){
       this.t=setInterval(()=>{
-        this.i++
-        if(this.i >= this.img.length){this.i = 0 }
-          next.src = this.img[this.i]
-          // this.im=["assets/up/"+this.i+++".jpg"]
-      },1000)
+        this.goNext(image)},1000)
+      // this.im=["assets/up/"+this.i+++".jpg"]
+      prv.style.display = "none"
+      play.style.display = "none"
+      stop.style.display = "inline-block"
+      next.style.display = "none"
     }
   }
-  stopShow(){
+  goNext(image:HTMLImageElement){
+    this.i++
+    if(this.i >= this.img.length){this.i = 0 }
+    image.src = this.img[this.i]
+  }
+  prev(image:HTMLImageElement){
+    this.i--
+    if(this.i < 0){this.i = this.img.length-1}
+    image.src = this.img[this.i]
+  }
+  //conflict between start and (next,prev) must stop first then next or prev
+  stopShow(prv:HTMLInputElement,play:HTMLInputElement,stop:HTMLInputElement,next:HTMLInputElement){
     clearInterval(this.t)
+    prv.style.display = "inline-block"
+    play.style.display = "inline-block"
+    stop.style.display = "none"
+    next.style.display = "inline-block"
     this.t=null
   }
 }
