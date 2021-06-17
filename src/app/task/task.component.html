@@ -1,0 +1,24 @@
+<div>
+  <h5>key_up_console</h5>
+  <input type="text" (keyup)="sendWrittenByKeyUp($event)"><br>
+  <h5>key_up_reference_console</h5>
+  <input type="text" #ref (keyup.enter)="sendWrittenByReference(ref)"><br>
+</div>
+<div>
+  <h1>Task_One</h1>
+  <input type="text" #refToButton (keyup.enter)="sendWrittenByReference(refToButton)">
+  <button (click)="typeInConsole(refToButton.value)">Save</button>
+</div>
+<div>
+  <h1>Task_Two</h1>
+  <input type="text" [(ngModel)]="insert"><br>
+  <input type="text" [(ngModel)]="insert">
+</div>
+<div class="slider">
+  <img [src]="img[0]" #next><br>
+  <input type="button" style="background-color:rgb(255,44,44);" value="<" (click)="prev(next)">
+  <input type="button" style="background-color:rgb(0,175,80);" value="play" (click)="startShow(next)">
+  <input type="button" style="background-color:rgb(255,44,44);" value="stop" (click)="stopShow()">
+  <input type="button" style="background-color:rgb(255,44,44);" value=">" (click)="goNext(next)">
+</div>
+
