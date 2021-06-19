@@ -1,0 +1,35 @@
+<table class="table  table-border table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students; let i = index">
+      <td>{{i+1}}</td>
+      <td>{{student.id}}</td>
+      <td>{{student.name}}</td>
+      <td>{{student.age}}</td>
+    </tr>
+  </tbody>
+</table>
+<div class="row">
+  <div class="card col-md-4 mt-3 mx-auto text-center" *ngFor="let student of students">
+    <div class="card-header">
+      {{student.name}}
+    </div>
+    <div class="card-body">
+      <img src={{student.image}}><br>
+      <button type="button" class="btn btn-info ms-3 mt-2">Details</button>
+      <button type="button" class="btn btn-success ms-3 mt-2">Edit</button>
+      <button type="button" class="btn btn-success ms-3 mt-2">Add</button>
+      <button type="button" class="btn btn-danger ms-3 mt-2">Delete</button>
+    </div>
+    <div class="card-footer text-muted">
+      {{student.age}}
+    </div>
+  </div>
+</div>
