@@ -1,5 +1,30 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <div class="container">
-  <table class="table  table-border table-hover">
+  <div *ngIf="addFlag">
+    <h1>Adding Student</h1>
+    <input class="ms-3 mt-2" #id type="text" [(ngModel)]="newStd.id" placeholder="enter your id"/>
+    <input class="ms-3 mt-2"  type="text" [(ngModel)]="newStd.name" placeholder="enter your name"/>
+    <input class="ms-3 mt-2"  type="text" [(ngModel)]="newStd.age" placeholder="enter your age"/>
+    <button type="button" class="btn btn-success ms-3 mt-2" (click)="addStd()">save</button>
+  </div>
+  <div *ngIf="editFlag">
+    <h1>Edit Student</h1>
+    <input class="ms-3 mt-2" #id type="text" [(ngModel)]="newStd.id" placeholder="enter your id"/>
+    <input class="ms-3 mt-2"  type="text" [(ngModel)]="newStd.name" placeholder="enter your name"/>
+    <input class="ms-3 mt-2"  type="text" [(ngModel)]="newStd.age" placeholder="enter your age"/>
+    <button type="button" class="btn btn-success ms-3 mt-2" (click)="updateStd()">save</button>
+  </div>
+  <table class="table table-hover">
     <thead>
       <tr>
         <th>#</th>
@@ -9,29 +34,49 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let student of students; let i = index">
+      <tr *ngFor="let student of students; let i = index; let e = even;let o=odd"[ngClass]="{'bg-light':e,'bg-secondary':o}">
         <td>{{i+1}}</td>
         <td>{{student.id}}</td>
         <td>{{student.name}}</td>
         <td>{{student.age}}</td>
+        <td>
+          <button type="button" class="btn btn-info ms-2 mt-2" (click)="showDetails(student.id)">Details</button>
+          <button type="button" class="btn btn-success ms-2 mt-2"  (click)="showEdit()">edit</button>
+          <button type="button" class="btn btn-success ms-2 mt-2" (click)="showAdd()">Add</button>
+          <button type="button" class="btn btn-danger ms-2 mt-2" (click)="deleteStd(student.id)">Delete</button>
+        </td>
       </tr>
     </tbody>
   </table>
+  <div *ngIf="detailsFlag">
+    {{studentDetails.id}}
+    {{studentDetails.name}}
+    {{studentDetails.age}}
+  </div>
   <div class="row">
-    <div class="card col-md-4 mt-3 ms-auto text-center" *ngFor="let student of students">
+    <div style="border: 2px solid red; width: 300px; height: 50px; margin: 10px auto; text-align:center;"*ngIf="detailsFlagCard">
+      {{studentDetails.id}}
+      {{studentDetails.name}}
+      {{studentDetails.age}}
+    </div></div>
+    <div class="row">
+    <div class="card col-md-5 mt-3 mx-auto text-center" *ngFor="let st of students">
       <div class="card-header">
-        {{student.name}}
+        {{st.name}}
       </div>
       <div class="card-body">
-        <img src={{student.image}}><br>
-        <button type="button" class="btn btn-info ms-3 mt-2">Details</button>
-        <button type="button" class="btn btn-success ms-3 mt-2">Edit</button>
-        <button type="button" class="btn btn-success ms-3 mt-2">Add</button>
-        <button type="button" class="btn btn-danger ms-3 mt-2">Delete</button>
+        <img src={{st.image}}><br>
+        <button type="button" class="btn btn-info ms-3 mt-2" (click)="showDetailsCard(st.id)">Details</button>
+        <button type="button" class="btn btn-success ms-3 mt-2" (click)="showEdit()">Edit</button>
+        <button type="button" class="btn btn-success ms-3 mt-2" (click)="showAdd()">Add</button>
+        <button type="button" class="btn btn-danger ms-3 mt-2" (click)="deleteStd(st.id)">Delete</button>
       </div>
       <div class="card-footer text-muted">
-        {{student.age}}
+        {{st.age}}
       </div>
     </div>
   </div>
 </div>
+
+
+
