@@ -54,7 +54,6 @@ export class Task2Component implements OnInit {
   showDetailsCard(id:number){
     this.students.forEach((item)=>{
       if(item.id == id){
-
         this.detailsFlagCard = true
         this.studentDetails.id=item.id
         this.studentDetails.name=item.name
